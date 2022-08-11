@@ -1,30 +1,93 @@
 @use '_reset';
 @import '_mixins';
 
+$sky: (
+  light: rgb(8, 217, 214),
+  dark: rgb(5, 160, 157),
+);
+
+$text-color: #000;
+
+// colgroup
 $c-sky: rgb(8, 217, 214);
-$c-dark-sky: rgb(5, 160, 157);
-$c-light-blue: rgb(234, 234, 234);
-$c-dark-blue: rgb(37, 42, 52);
-$c-light-red: rgb(255, 46, 99);
-$c-dark-red: rgb(189, 0, 47);
+$c-sky-dark: rgb(0, 218, 214);
+$c-blue: rgb(234, 234, 234);
+$c-blue-dark: rgb(37, 42, 52);
+$c-red: rgb(255, 46, 99);
+$c-red-dark: rgb(204, 7, 57);
+
+//font size
+$text-sm: 0.875rem;
+$text-base: 1rem;
+$text-lg: 1.125rem;
+$text-xl: 1.3rem;
+$text-2xl: 1.5rem;
+
+// fonts weight
+$font-light: 300;
+$font-normal: 400;
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+$font-extrabold: 800;
+$font-black: 900;
+
+// gap, padding, margin
+$spacing-1: 0.25rem;
+$spacing-2: 0.5 0.375rem;
+$spacing-3: 0.5rem;
+$spacing-4: 0.5 0.625rem;
+$spacing-5: 0.75rem;
+$spacing-6: 0.5 0.875rem;
+$spacing-7: 1rem;
+$spacing-8: 1.25rem;
+$spacing-9: 1.5rem;
+$spacing-10: 1.75rem;
+$spacing-11: 2rem;
+$spacing-12: 2.25rem;
+$spacing-13: 2.5rem;
+$spacing-14: 2.75rem;
+$spacing-15: 3rem;
+$spacing-16: 3.25rem;
+$spacing-17: 3.5rem;
+$spacing-18: 3.75rem;
+$spacing-19: 4rem;
+$spacing-20: 5rem;
+$spacing-24: 6rem;
+$spacing-28: 7rem;
+$spacing-32: 8rem;
+$spacing-36: 9rem;
+$spacing-40: 10rem;
+
+//
+$padding-x: 1rem;
+
+// index
+$level-3: 3; // For z-index
+
+// transition
 
 body {
-  background-color: $c-dark-blue;
-  color: $c-light-blue;
+  background-color: $c-blue-dark;
+  color: $c-blue;
+  // color: $sky(1);
   font-family: Arial, Helvetica, sans-serif;
 }
+// header, projets, about {
+// max-width: 75rem;
+// margin-top: 4rem;
 //
+// }
 
 .header {
   width: 100%;
-  margin-top: 12vh;
+  margin-top: 14vh;
 
   &__nav {
     @include flex(row, nowrap, space-between, center);
     padding: 0.6rem;
     width: 100%;
     // height: 9vh;
-    background: $c-sky;
     position: fixed;
     z-index: 20;
     top: 0;
@@ -35,6 +98,7 @@ body {
     gap: 1rem;
     width: 90%;
     max-width: 1200px;
+    height: 100vh;
     text-align: center;
 
     margin: 1.5rem auto;
@@ -42,8 +106,11 @@ body {
 }
 
 .navbar {
-  // &__logo {
-  // }
+  &__logo {
+    color: $c-red;
+    font-size: $text-lg;
+    font-weight: $font-bold;
+  }
 
   &__menu {
     position: fixed;
@@ -75,42 +142,37 @@ body {
   }
   &__list {
     @include flex(column, nowrap, space-evenly, flex-start);
-    // background: $c-sky;
-    // gap: 0.5rem;
-    // opacity: 0;
-    // transform: translateY(-300px);
-    transition: transform 600ms ease-in-out, opacity 500ms;
+    transition: opacity 500ms;
     @include media() {
       flex-direction: row;
       align-items: center;
     }
   }
   &__item {
-    background: $c-sky;
-    width: 100%;
+    font-size: $text-base;
     padding: 0.5rem 1rem;
+    width: 100%;
     position: relative;
-
     opacity: 0;
     transform: scaleX(0);
     transform-origin: right;
-    transition: background 500ms, opacity 500ms, width 500ms, transform 600ms;
-    .navbar__menu--show & {
-      opacity: 1;
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-    $item-count: 4;
+    transition: background 500ms, opacity 500ms, transform 600ms;
 
-    @for $i from 1 through $item-count {
+    $menu-lenght: 4;
+    @for $i from 1 through $menu-lenght {
       &:nth-child(#{$i}) {
         background: adjust-hue(blue, $i * 80deg);
         transition-delay: 300ms * $i;
       }
     }
 
+    .navbar__menu--show & {
+      opacity: 1;
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
     &:hover {
-      color: $c-dark-red;
       &::after {
         width: 100%;
       }
@@ -123,31 +185,27 @@ body {
       left: 0;
       height: 2px;
       width: 0;
-      background: $c-light-blue;
       transition: width 600ms;
     }
     @include media() {
       width: auto;
       padding: 0.5rem;
       opacity: 1;
-      transform: scale(1) translateY(0) rotateX(0deg);
-      &:hover {
-        background-color: transparent;
-      }
+      transform: scaleX(1);
     }
   }
 
   &__btn {
     display: block;
     padding: 0.4rem 0.8rem;
-    background: $c-light-red;
+    background: $c-red;
     transition: background 400ms, color 400ms, border-radius 500ms;
     @include media() {
       display: none;
     }
     &:hover {
-      background: $c-light-blue;
-      color: $c-dark-blue;
+      background: $c-blue;
+      color: $c-blue-dark;
       border-radius: 10px;
     }
   }
@@ -156,6 +214,7 @@ body {
 .hero {
   &__content {
     max-width: 450px;
+
     @include flex(column, nowrap, center, center);
     gap: 1.2rem;
     @include media() {
@@ -164,6 +223,7 @@ body {
   }
 
   &__title {
+    font-size: $text-2xl;
     &:hover {
       span::after {
         transform-origin: bottom left;
@@ -171,7 +231,8 @@ body {
       }
     }
     span {
-      color: $c-light-red;
+      font-weight: $font-extrabold;
+      color: $c-red;
       position: relative;
       &::after {
         content: '';
@@ -181,7 +242,7 @@ body {
         left: 0%;
         height: 2px;
         margin-bottom: -5px;
-        background-color: $c-light-red;
+        background-color: $c-red;
         transform: scaleX(0);
         transform-origin: bottom right;
         transition: transform 400ms cubic-bezier(1, 0, 0, 1);
@@ -192,7 +253,10 @@ body {
     color: blue;
     transform: scale(1.1);
   } */
-
+  &__description {
+    font-size: $text-base;
+    font-weight: $font-light;
+  }
   &__links {
     display: flex;
     flex-wrap: wrap;
@@ -200,6 +264,8 @@ body {
   }
 
   &__link {
+    font-size: $text-base;
+    font-weight: $font-semibold;
     padding: 0.7rem 1rem;
     position: relative;
     transition: background 300ms, color 400ms;
@@ -239,13 +305,13 @@ body {
   }
 
   &__link--proyect {
-    background: $c-dark-red;
+    background: $c-red-dark;
     &:active {
-      background: $c-light-red;
+      background: $c-red;
     }
   }
   &__link--cv {
-    background: $c-dark-sky;
+    background: $c-sky-dark;
     &:active {
       background: $c-sky;
     }
@@ -265,10 +331,12 @@ body {
   }
 
   &__social a {
+    font-size: $text-base;
+    font-weight: $font-semibold;
     background: $c-sky;
     border-radius: 5rem;
 
-    outline: 2px solid $c-light-red;
+    outline: 2px solid $c-red;
     transition: background, color, width, border-radius, padding, outline,
       outline-offset;
     transition-duration: 700ms;
@@ -276,17 +344,15 @@ body {
     height: 3rem;
     @include flex(row, nowrap, center, center);
 
-    font-size: 1rem;
-    font-weight: 700;
     overflow: hidden;
 
     &:hover {
-      background: $c-light-red;
-      outline: 3px solid $c-light-blue;
+      background: $c-red;
+      outline: 3px solid $c-blue;
       outline-offset: 0.2rem;
       border-radius: 1rem;
       width: 4.5rem;
-      color: $c-dark-blue;
+      color: $c-blue-dark;
       &::after {
         content: 'inst';
         opacity: 1;
@@ -295,7 +361,7 @@ body {
     }
   }
 
-  &__photo {
+  &__avatar {
     max-width: 450px;
     img {
       width: 100%;
@@ -314,7 +380,7 @@ main {
   max-width: 1050px;
   width: 90%;
   // background: $c-sky;
-  border: 2px solid $c-light-red;
+  border: 2px solid $c-red;
   padding: 1rem 1.2rem;
   columns: 270px auto;
   column-gap: 1rem;
@@ -326,61 +392,76 @@ main {
     overflow-x: hidden;
   }
   &__title {
-    // unificar con tech
-    color: $c-dark-blue;
-    text-shadow: 2px 2px 0px $c-light-red;
+    // unificar con tech @extend
+    font-size: $text-xl;
+    font-weight: $font-extrabold;
+    color: $c-blue;
+    // text-shadow: 2px 2px 0px $c-red;
   }
-  &__avatar {
+  &__user {
     @include flex(row, nowrap, center, center);
     gap: 0.8rem;
-    transform: translateX(100px);
-    transition: transform 400ms linear;
 
     .about-me__nav:hover & {
       transform: translateX(0px);
     }
+    @media screen and (max-width: 300px) {
+      display: none;
+    }
+    @include media() {
+      transform: translateX(5rem);
+      transition: transform 400ms linear;
+    }
   }
 
-  &__name {
-    opacity: 0;
-    transform: scale(0.7);
+  &__username {
     transition: opacity 400ms, transform 400ms;
-
     .about-me__nav:hover & {
       opacity: 1;
       transform: scale(1);
     }
+    @include media() {
+      opacity: 0;
+      transform: scale(0.7);
+    }
+    h4 {
+      color: $c-red;
+      font-weight: $font-bold;
+    }
+    h4,
+    p {
+      font-size: $text-sm;
+    }
   }
 
-  &__name h4 {
-    color: $c-light-red;
-  }
-  &__photo {
+  &__avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
   }
   &__description {
+    font-size: $text-base;
+    font-weight: $font-light;
     &::selection {
-      background-color: $c-light-red;
+      background-color: $c-red;
     }
   }
 }
 
 .tech {
   &__title {
-    color: $c-dark-blue;
-    text-shadow: 2px 2px 0px $c-light-red;
+    color: $c-blue;
+    // text-shadow: 2px 2px 0px $c-red;
 
     margin-bottom: 1rem;
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: $text-xl;
+    font-weight: $font-bold;
   }
 
   &__list {
     display: grid;
     justify-content: center;
-    grid-template-columns: repeat(auto-fit, minmax(50px, 200px));
+    grid-template-columns: repeat(auto-fit, minmax(50px, 100px));
     grid-gap: 1rem;
   }
   &__item {
@@ -388,6 +469,9 @@ main {
     z-index: 10;
     img {
       width: 100%;
+    }
+    svg {
+      // background-color: whitesmoke;
     }
   }
 
@@ -398,7 +482,9 @@ main {
     opacity: 0;
     pointer-events: none;
     border-radius: 2rem;
-    background: $c-light-red;
+    background: $c-sky;
+    font-size: $text-base;
+    font-weight: $font-bold;
     padding: 0.5rem;
     transform: translate(50%, 0%) scale(0.5);
     transition: opacity 1s, transform 500ms;
@@ -413,7 +499,7 @@ main {
       left: 50%;
       width: 15px;
       height: 15px;
-      background: $c-light-red;
+      background: $c-sky;
       transform: rotate(-12deg);
       clip-path: polygon(53% 100%, 0 0, 100% 0);
     }
@@ -424,31 +510,87 @@ main {
   max-width: 1200px;
   width: 90%;
   &__h2 {
-    color: $c-dark-blue;
-    text-shadow: 2px 2px 0px $c-light-blue;
+    color: $c-blue-dark;
+    text-shadow: 2px 2px 0px $c-blue;
 
     margin-bottom: 1rem;
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: $text-2xl;
+    font-weight: $font-extrabold;
   }
   &__list {
     display: grid;
-    // grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    // grid-template-rows: 1fr 1fr;
+
+    grid-template: 1fr / 1fr;
+    @include media() {
+      grid-template: 1fr / 1fr 1fr;
+    }
+
+    // grid-auto-rows: minmax(150px, 1fr);
+    @media screen and (min-width: 800px) {
+      grid-template: 1fr 1fr / 1fr 1fr 1fr;
+      // grid-auto-flow: dense;
+      li {
+        &:nth-child(1) {
+          grid-area: 1/1/3/3;
+        }
+        &:nth-child(4) {
+          grid-area: 3/2 / span 2/4;
+          padding: 1rem;
+          background-color: cyan;
+        }
+        &:nth-child(7) {
+          grid-area: 5/1 / span 2/3;
+        }
+        &:nth-child(10) {
+          grid-area: 7/2 / span 2/4;
+        }
+        &:nth-child(13) {
+          // grid-area: 9/1 / span 2/3;
+          grid-area: span 2/1 / span 2/3;
+        }
+      }
+    }
+    gap: 0.4rem;
+
+    // grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   }
 
   &__item {
     position: relative;
     text-align: center;
     overflow-y: hidden;
-    &:nth-child(odd) {
-      transform: translateX(20px);
+
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    transition: outline 300ms;
+
+    &:nth-child(1) {
+      grid-column: span 2;
     }
+    &:nth-child(4) {
+      grid-column: span 2;
+    }
+    &:nth-child(7) {
+      grid-column: span 2;
+    }
+    &:nth-child(10) {
+      grid-column: span 2;
+    }
+    &:nth-child(13) {
+      grid-column: span 2;
+    }
+
     /* opacity: 0.5; */
     img {
       width: 100%;
+      height: 100%;
+      // object-fit: cover;
     }
     &:hover {
+      outline: 4px solid $c-blue;
+      // outline-offset: 8px;
+      z-index: 10;
       &::after {
         opacity: 1;
       }
@@ -469,17 +611,18 @@ main {
       transition: opacity 500ms;
     }
   }
-
+  //project__title
   &__title {
     position: absolute;
     top: -10%;
     right: 0;
     left: 0;
-    // background: rgba(226, 226, 226, 0.452);
+    background: rgba(29, 29, 29, 0.452);
     opacity: 0;
     transition: top 400ms, opacity 400ms;
 
-    font-size: 1.4rem;
+    font-size: $text-xl;
+    font-weight: $font-bold;
     padding: 1rem;
     backdrop-filter: blur(15px);
 
@@ -493,10 +636,11 @@ main {
     z-index: 30;
     bottom: -10%;
     border-radius: 15px;
-    background: crimson;
     padding: 0.5rem 1rem;
+    font-size: $text-base;
+    font-weight: $font-semibold;
     opacity: 0;
-    transition: bottom 400ms, opacity 400ms;
+    transition: bottom 400ms, opacity 400ms, background 500ms;
     &:hover {
       background: rgb(241, 22, 66);
     }
@@ -507,120 +651,36 @@ main {
   }
   &__link--code {
     left: 10px;
+    background-color: $c-sky;
   }
   &__link--demo {
     right: 10px;
+    background-color: $c-red;
   }
-
-  &__arrow--right,
-  &__arrow--left {
-    padding: 1rem;
-    background-color: rgb(0, 38, 255);
-  }
-}
-
-@media screen and (max-width: 300px) {
-  .user__avatar {
-    display: none;
-  }
-}
-
-.contact {
-  background-color: #3b09c5;
-  max-width: 1200px;
-  width: 100%;
-
-  &__form {
-    max-width: 300px;
-    @include flex(column, nowrap, center, center);
-    gap: 1rem;
-    padding: 1rem;
-
-    margin: auto;
-  }
-  &__input {
-    // padding: 1rem;
-    margin-top: 1rem;
-    border-bottom: 2px solid white;
-    position: relative;
-    label {
-      position: absolute;
-      top: 0;
-      left: 0;
-      transition: transform 500ms, color 500ms;
-
-      color: red;
-    }
-    input,
-    textarea {
-      width: 100%;
-      &:hover ~ label {
-        transform: translateY(-1.5rem) scale(1.1);
-        color: white;
-      }
-    }
-    input:hover {
-      label {
-        transform: translateY(-1.5rem) scale(1.1);
-        color: white;
-      }
-    }
-  }
-  &__input--email {
-  }
-  &__input--commet {
-    textarea {
-      max-width: 230px;
-    }
-  }
-  &__submit {
-    padding: 1rem 0;
+  &__description {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(-50%);
+    transition: transform 400ms;
     width: 100%;
-    background: $c-light-red;
-    position: relative;
 
-    &:hover {
-      &::before {
-        transform-origin: top right;
-        transform: scaleX(1);
-      }
-      &::after {
-        transform-origin: bottom left;
-        transform: scaleX(1);
-      }
-    }
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      border: 0 solid transparent;
-      transform: scaleX(0);
-      transition: transform 500ms cubic-bezier(1, 0, 0, 1);
-    }
-    &::before {
-      border-top: 2px solid white;
-      transform-origin: top left;
-      right: 0;
-      top: -4px;
-    }
-    &::after {
-      border-bottom: 2px solid white;
-      transform-origin: bottom right;
-      bottom: -4px;
-      left: 0;
+    background: $c-blue-dark;
+    text-align: center;
+    padding: 1rem 1.2rem;
+    .project__item:hover & {
+      transform: translateY(0);
     }
   }
 }
 
 .typing {
   display: block;
-  width: 16ch;
+  width: 22ch;
   border-right: 2px solid white;
   white-space: nowrap;
   overflow-x: hidden;
   font-size: 1.6rem;
-  // animation: espacio 2s steps(16), blick 1000ms step-start infinite;
+  // animation: espacio 2s steps(22), blick 1000ms step-start infinite;
 }
 
 @keyframes espacio {

@@ -4,9 +4,15 @@
   justify-content: $just;
   align-items: $align;
 }
-
+//mediadesk
 @mixin media(){
   @media screen and (min-width:480px) {
       @content
   }
 }
+
+
+// estilos impares
+// &:nth-child(odd) {
+//   transform: translateX(20px);
+// }
