@@ -72,6 +72,18 @@ body {
   color: $c-blue;
   // color: $sky(1);
   font-family: Arial, Helvetica, sans-serif;
+
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: -10%;
+    height: 100%;
+    width: 30%;
+    z-index: -1;
+    background-color: rgba(0, 13, 196, 0.596);
+  }
 }
 .header,
 .project,
@@ -83,6 +95,11 @@ body {
 .header {
   width: 100%;
   margin-top: 14vh;
+
+  @include media() {
+    margin-top: 0;
+    height: 90vh;
+  }
 
   &__nav {
     @include flex(row, nowrap, space-between, center);
@@ -99,7 +116,8 @@ body {
     gap: 1rem;
     width: 90%;
     max-width: 1200px;
-    height: 100vh;
+    height: 100%;
+    // height: max-content;
 
     margin: 1.5rem auto;
   }
@@ -199,11 +217,7 @@ body {
       opacity: 1;
       transform: scaleX(1);
       background: transparent;
-
-      // .navbar__list &:not(:hover) {
-      //   opacity: 0.75;
-      // }
-      .navbar__list &:not(:hover) {
+      .navbar__list:hover &:not(:hover) {
         opacity: 0.75;
       }
     }
@@ -231,8 +245,10 @@ body {
 
     @include flex(column, nowrap, center, center);
     gap: 1.2rem;
+    text-align: center;
     @include media() {
       align-items: flex-start;
+      text-align: left;
       width: 55%;
     }
   }
@@ -370,12 +386,18 @@ body {
   }
 
   &__avatar {
+    // width: 85%;
+    // height: 300px;
     @include media() {
       width: 40%;
+      // img {
+      //   height: 550px;
+      // }
     }
     img {
-      width: 100%;
-      filter: drop-shadow(8px 12px 1px red);
+      filter: drop-shadow(8px 12px 1px rgb(255, 0, 0));
+      max-height: 250px;
+      object-fit: contain;
     }
   }
 }
@@ -390,7 +412,9 @@ main {
   max-width: 1050px;
   width: 90%;
   // background: $c-sky;
+  background-color: rgb(32, 32, 32);
   border: 2px solid $c-red;
+  border-radius: 2rem;
   padding: 1rem 1.2rem;
 
   display: grid;
@@ -450,8 +474,8 @@ main {
   }
 
   &__avatar {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
   }
   &__description {
@@ -476,7 +500,7 @@ main {
   &__list {
     display: grid;
     justify-content: center;
-    grid-template-columns: repeat(auto-fit, minmax(50px, 100px));
+    grid-template-columns: repeat(auto-fit, minmax(20px, 70px));
     grid-gap: 1rem;
   }
   &__item {
@@ -603,16 +627,19 @@ main {
   }
 
   &__item {
-    // position: relative;
-    // text-align: center;
+    background: $c-red-dark;
+    height: max-content;
     border-radius: 1.2rem;
     overflow: hidden;
-    transition: outline 300ms;
+    transition: outline 300ms, height 500ms;
+    // &:hover {
+    //   height: 50vmax;
+    // }
   }
   &__photo {
     position: relative;
     text-align: center;
-    overflow-y: hidden;
+    overflow: hidden;
     width: 100%;
     // height: 100%;
 
@@ -623,7 +650,7 @@ main {
     img {
       width: 100%;
       height: 100%;
-      // object-fit: cover;
+      object-fit: cover;
     }
     &:hover {
       z-index: 10;
@@ -691,14 +718,11 @@ main {
   }
   &__link--demo {
     right: 10px;
-    background-color: $c-red;
+    background-color: $c-blue-dark;
   }
   &__description {
     width: 100%;
     padding: 0.5rem 1rem 1rem;
-    background: $c-red-dark;
-    border-bottom-left-radius: 1.2rem;
-    border-bottom-right-radius: 1.2rem;
     // .project__item:hover & {
     //   height: 150px;
     // }
