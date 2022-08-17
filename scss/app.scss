@@ -1,71 +1,10 @@
 @use '_reset';
 @import '_mixins';
+@import 'variables';
 
-$sky: (
-  light: rgb(8, 217, 214),
-  dark: rgb(5, 160, 157),
-);
-
-$text-color: #000;
-
-//font size
-$text-sm: 0.875rem;
-$text-base: 1rem;
-$text-lg: 1.125rem;
-$text-xl: 1.3rem;
-$text-2xl: 1.5rem;
-
-// fonts weight
-$font-light: 300;
-$font-normal: 400;
-$font-medium: 500;
-$font-semibold: 600;
-$font-bold: 700;
-$font-extrabold: 800;
-$font-black: 900;
-
-// gap, padding, margin
-$spacing-1: 0.25rem;
-$spacing-2: 0.5 0.375rem;
-$spacing-3: 0.5rem;
-$spacing-4: 0.5 0.625rem;
-$spacing-5: 0.75rem;
-$spacing-6: 0.5 0.875rem;
-$spacing-7: 1rem;
-$spacing-8: 1.25rem;
-$spacing-9: 1.5rem;
-$spacing-10: 1.75rem;
-$spacing-11: 2rem;
-$spacing-12: 2.25rem;
-$spacing-13: 2.5rem;
-$spacing-14: 2.75rem;
-$spacing-15: 3rem;
-$spacing-16: 3.25rem;
-$spacing-17: 3.5rem;
-$spacing-18: 3.75rem;
-$spacing-19: 4rem;
-$spacing-20: 5rem;
-$spacing-24: 6rem;
-$spacing-28: 7rem;
-$spacing-32: 8rem;
-$spacing-36: 9rem;
-$spacing-40: 10rem;
-
-//
-$padding-x: 1rem;
-
-// index
-$level-3: 3; // For z-index
-
-// transition
-
-// colgroup
-$c-sky: rgb(8, 217, 214);
-$c-sky-dark: rgb(0, 218, 214);
-$c-blue: rgb(234, 234, 234);
-$c-blue-dark: rgb(37, 42, 52);
-$c-red: rgb(255, 46, 99);
-$c-red-dark: rgb(204, 7, 57);
+// :root {
+//   --color-red: rgb(38, 0, 255);
+// }
 
 body {
   background-color: $c-blue-dark;
@@ -77,9 +16,9 @@ body {
     content: '';
     position: absolute;
     top: -5%;
-    right: -10%;
+    right: 0;
     height: 100%;
-    width: 30%;
+    width: 20%;
     z-index: -1;
     background-color: rgb(94, 255, 0);
   }
@@ -87,9 +26,9 @@ body {
     content: '';
     position: absolute;
     top: -5%;
-    left: -10%;
+    left: 0;
     height: 100%;
-    width: 30%;
+    width: 20%;
     z-index: -1;
     background-color: rgb(17, 33, 255);
   }
@@ -240,7 +179,9 @@ body {
   &__btn {
     display: block;
     padding: 0.4rem 0.8rem;
-    background: $c-red;
+    background: var(--color-red);
+    color: white;
+
     transition: background 400ms, color 400ms, border-radius 500ms;
     @include media() {
       display: none;
@@ -269,6 +210,8 @@ body {
 
   &__title {
     font-size: $text-2xl;
+
+    animation: goku 1s;
     &:hover {
       span::after {
         transform-origin: bottom left;
@@ -306,6 +249,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+
+    animation: goku 1s;
   }
 
   &__link {
@@ -414,6 +359,16 @@ body {
   }
 }
 
+@keyframes goku {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) rotateX(90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+  }
+}
 /*---------------------------------------
 section about
 ---------------------------------------*/
