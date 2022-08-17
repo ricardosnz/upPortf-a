@@ -1,10 +1,6 @@
 @use '_reset';
 @import '_mixins';
-@import 'variables';
-
-// :root {
-//   --color-red: rgb(38, 0, 255);
-// }
+@import '_variables';
 
 body {
   background-color: $c-blue-dark;
@@ -33,10 +29,6 @@ body {
     background-color: rgb(17, 33, 255);
   }
   transition: color 1s, background-color 1s;
-  &.darkmode {
-    background-color: $c-blue;
-    color: $c-blue-dark;
-  }
 }
 .header,
 .project,
@@ -138,6 +130,8 @@ body {
         transition-delay: 300ms * $i;
       }
     }
+    &__item--switch {
+    }
 
     .navbar__menu--show & {
       opacity: 1;
@@ -211,7 +205,7 @@ body {
   &__title {
     font-size: $text-2xl;
 
-    animation: goku 1s;
+    animation: goku 3s;
     &:hover {
       span::after {
         transform-origin: bottom left;
@@ -244,13 +238,15 @@ body {
   &__description {
     font-size: $text-base;
     font-weight: $font-light;
+
+    animation: goku 3s;
   }
   &__links {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
 
-    animation: goku 1s;
+    animation: goku 3s;
   }
 
   &__link {
@@ -259,6 +255,8 @@ body {
     padding: 0.7rem 1rem;
     position: relative;
     transition: background 300ms, color 400ms;
+
+    animation: goku 3s;
 
     &:hover {
       &::before {
@@ -281,13 +279,13 @@ body {
       transition: transform 500ms cubic-bezier(1, 0, 0, 1);
     }
     &::before {
-      border-top: 2px solid white;
+      border-top: 2px solid $c-blue;
       transform-origin: top left;
       right: 0;
       top: -4px;
     }
     &::after {
-      border-bottom: 2px solid white;
+      border-bottom: 2px solid $c-blue;
       transform-origin: bottom right;
       bottom: -4px;
       left: 0;
@@ -311,6 +309,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
+
+    animation: goku 3s;
   }
 
   &__social a {
@@ -347,6 +347,7 @@ body {
   &__avatar {
     // width: 85%;
     height: 280px;
+    animation: goku 3s;
     @include media() {
       width: 40%;
       height: 420px;
@@ -362,11 +363,12 @@ body {
 @keyframes goku {
   0% {
     opacity: 0;
-    transform: translateY(-20px) rotateX(90deg);
+    transform: translateY(60px) rotateX(90deg);
   }
+
   100% {
     opacity: 1;
-    transform: translateY(0) rotateX(0deg);
+    transform: translateY(0) rotateX(0);
   }
 }
 /*---------------------------------------
@@ -379,7 +381,8 @@ main {
   max-width: 1050px;
   width: 90%;
   // background: $c-sky;
-  background-color: rgb(32, 32, 32);
+  background-color: $c-blue-dark;
+  color: $c-blue;
   border: 2px solid $c-red;
   border-radius: 2rem;
   padding: 1.5rem 2rem;
@@ -402,7 +405,6 @@ main {
     // unificar con tech @extend
     font-size: $text-xl;
     font-weight: $font-extrabold;
-    color: $c-blue;
     // text-shadow: 2px 2px 0px $c-red;
   }
   &__user {
@@ -535,9 +537,10 @@ main {
 .project {
   max-width: 1200px;
   width: 90%;
+  color: $c-blue;
+
   &__h2 {
-    color: $c-blue-dark;
-    text-shadow: 2px 2px 0px $c-blue;
+    text-shadow: 2px 2px 0px $c-blue-dark;
 
     font-size: $text-2xl;
     font-weight: $font-extrabold;
@@ -614,7 +617,8 @@ main {
   }
 
   &__item {
-    background: $c-red-dark;
+    background: $c-blue-dark;
+    box-shadow: 4px 6px 14px rgba(0, 0, 0, 0.582);
     height: max-content;
     border-radius: 0.5rem;
     overflow: hidden;
@@ -658,7 +662,6 @@ main {
     top: -10%;
     right: 0;
     left: 0;
-    background: rgba(29, 29, 29, 0.452);
     opacity: 0;
     transition: top 400ms, opacity 400ms;
 

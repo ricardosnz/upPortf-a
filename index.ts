@@ -14,32 +14,19 @@ menu.addEventListener('click', ({ target }: MouseEvent) => {
   // console.log(target.classList.keys);
   if (classChild.includes(target.className)) showMenu();
 });
-// menuBtn.addEventListener('click', showMenu);
+menuBtn.addEventListener('click', showMenu);
+
+const switchMode = document.querySelector('.navbar__item--switch');
+
 const dark = () => document.body.classList.toggle('darkmode');
 
-menuBtn.addEventListener('click', dark);
+switchMode.addEventListener('click', dark);
 
-// button.addEventListener('click',() : void =>{
-//     nav.classList.toggle('header__nav--activo')
-// })
-
-import variables from './scss/variables.scss';
-
-let roo = document.querySelector(':root');
-
-// console.log(roo.getPropertyValue('--blue'));
-// console.log(roo.getPropertyValue());
-// const propiedad = getComputedStyle(document.documentElement).getPropertyValue(
-//   'blue'
-// );
-// let root = document.documentElement;
+// let root = document.documentElement; es lo mismo
 // let root = document.body;
 
+// menuBtn.addEventListener('click', () => roo.style.setProperty('--blue-dark', 'red'));
+
+let roo = document.querySelector(':root');
+// solo lo obtiene si en el mismo bloque esta la variable
 console.log(getComputedStyle(roo).getPropertyValue('--color-red'));
-// console.log(getComputedStyle(menuBtn).getPropertyValue('--color-red'));
-
-// const color = document.getElementById("app").style.padding = variables.padding;
-// console.log(menuBtn.style.color);
-
-// r.style.setProperty('--blue', 'lightblue');
-// .style.setProperty('--font-family', 'Verdana');

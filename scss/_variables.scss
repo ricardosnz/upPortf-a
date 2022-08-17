@@ -75,24 +75,24 @@ $level-3: 3; // For z-index
 // transition
 
 :root {
-  --color-red: rgb(255, 46, 99);
+  --color-blue: rgb(234, 234, 234);
+  --color-blue-dark: rgb(37, 42, 52);
+}
+body.darkmode {
+  --color-blue: rgb(37, 42, 52);
+  --color-blue-dark: rgb(234, 234, 234);
 }
 
 // colgroup
+$c-blue: var(--color-blue);
+$c-blue-dark: var(--color-blue-dark);
 $c-sky: rgb(8, 217, 214);
 $c-sky-dark: rgb(0, 218, 214);
-$c-blue: rgb(234, 234, 234);
-$c-blue-dark: rgb(37, 42, 52);
-$c-red: var(--color-red);
+$c-red: rgb(255, 46, 99);
 $c-red-dark: rgb(204, 7, 57);
 
-// $primary-color: #fe4e5e;
-// $background-color: #fefefe;
-// $padding: 124px;
-
-:export {
-  cBlue: $c-sky;
-}
 // primaryColor: $primary-color;
 // backgroundColor: $background-color;
 // padding: $padding;
+
+
