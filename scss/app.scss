@@ -666,9 +666,11 @@ main {
     transition: top 400ms, opacity 400ms;
 
     font-size: $text-xl;
+    color: $c-sky;
     font-weight: $font-bold;
     padding: 1rem;
-    backdrop-filter: blur(15px);
+    background-color: rgba(0, 0, 0, 0.274);
+    backdrop-filter: blur(25px);
 
     .project__item:hover & {
       top: 0;
@@ -715,7 +717,7 @@ main {
   &__techs {
     span {
       font-weight: $font-semibold;
-      color: $c-sky;
+      color: $c-red;
     }
   }
 }
